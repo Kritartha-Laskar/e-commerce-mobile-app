@@ -218,7 +218,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             children: [
               // 🔵 Top Image Section
               Expanded(
-                flex: 4,
+                flex: 5,
                 child: Stack(
                   children: [
                     // Top Bar
@@ -342,188 +342,163 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
               ),
 
-              // 🔽 Bottom Details Section
+              // 🔽 Bottom Details Section (compact)
               Expanded(
-                flex: 6,
+                flex: 3,
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
                   decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                   ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Brand Name
-                        Text(
-                          widget.brand,
-                          style: const TextStyle(
-                            color: Color(0xFF6A5AE0),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-
-                        // Product Name
-                        Text(
-                          widget.name,
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-
-                        // Price and Rating
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "₹${widget.price}",
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6A5AE0),
-                              ),
-                            ),
-                            // Row(
-                            //   children: [
-                            //     const Icon(Icons.star, color: Colors.amber, size: 16),
-                            //     const Icon(Icons.star, color: Colors.amber, size: 16),
-                            //     const Icon(Icons.star, color: Colors.amber, size: 16),
-                            //     const Icon(Icons.star, color: Colors.amber, size: 16),
-                            //     const Icon(Icons.star, color: Colors.amber, size: 16),
-                            //     const SizedBox(width: 5),
-                            //     Text(
-                            //       "4.9 (2.3k)",
-                            //       style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
-                            //     ),
-                            //   ],
-                            // ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-
-                        // // Select Size
-                        // const Text(
-                        //   "Select Size",
-                        //   style: TextStyle(
-                        //     fontWeight: FontWeight.bold,
-                        //     color: Colors.black87,
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 10),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //   children: [
-                        //     _sizeCircle(38),
-                        //     _sizeCircle(39),
-                        //     _sizeCircle(40),
-                        //     _sizeCircle(41),
-                        //     _sizeCircle(42),
-                        //   ],
-                        // ),
-                        // const SizedBox(height: 20),
-
-                        // Description
-                        Text(
-                          "Lightweight, breathable upper with responsive foam sole. Built for speed and all-day comfort.",
-                          style: TextStyle(
-                            color: Colors.grey.shade500,
-                            fontSize: 13,
-                            height: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-
-                        // ── Action Buttons ───────────────────────────────
-                        Row(
-                          children: [
-                            // Add to Cart Icon Button
-                            GestureDetector(
-                              onTap: _isAddingToCart ? null : _addToCart,
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 200),
-                                padding: const EdgeInsets.all(14),
-                                decoration: BoxDecoration(
-                                  color: _isAddingToCart
-                                      ? const Color(0xFF6A5AE0).withOpacity(0.15)
-                                      : Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: const Color(0xFF6A5AE0), width: 2),
-                                  boxShadow: _isAddingToCart
-                                      ? []
-                                      : [
-                                          BoxShadow(
-                                            color: const Color(0xFF6A5AE0)
-                                                .withOpacity(0.2),
-                                            blurRadius: 8,
-                                            offset: const Offset(0, 3),
-                                          ),
-                                        ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Brand Name
+                              Text(
+                                widget.brand,
+                                style: const TextStyle(
+                                  color: Color(0xFF6A5AE0),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 11,
                                 ),
-                                child: _isAddingToCart
-                                    ? const SizedBox(
-                                        height: 22,
-                                        width: 22,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2.5,
-                                          color: Color(0xFF6A5AE0),
-                                        ),
-                                      )
-                                    : const Icon(
-                                        Icons.shopping_bag_outlined,
-                                        color: Color(0xFF6A5AE0),
-                                        size: 24,
-                                      ),
                               ),
-                            ),
-                            const SizedBox(width: 15),
-                            // Buy Now Button
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => AddressPage(
-                                        isBuyNow: true,
-                                        buyNowProductId: widget.productId,
-                                        buyNowProductName: widget.name,
-                                        buyNowPrice: double.tryParse(widget.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
-                                        buyNowQuantity: 1, // Default to 1, or add a quantity selector later
+                              const SizedBox(height: 3),
+
+                              // Product Name + Price on same row
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      widget.name,
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
                                       ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF6A5AE0),
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: const EdgeInsets.symmetric(vertical: 16),
-                                  elevation: 0,
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "₹${widget.price}",
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF6A5AE0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 6),
+
+                              // Description (shorter, 2 lines max)
+                              Text(
+                                "Lightweight, breathable upper with responsive foam sole. Built for speed and all-day comfort.",
+                                style: TextStyle(
+                                  color: Colors.grey.shade500,
+                                  fontSize: 12,
+                                  height: 1.4,
                                 ),
-                                child: const Text(
-                                  "Buy Now",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // ── Action Buttons ───────────────────────────────
+                      Row(
+                        children: [
+                          // Add to Cart Icon Button
+                          GestureDetector(
+                            onTap: _isAddingToCart ? null : _addToCart,
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: _isAddingToCart
+                                    ? const Color(0xFF6A5AE0).withOpacity(0.15)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: const Color(0xFF6A5AE0), width: 2),
+                                boxShadow: _isAddingToCart
+                                    ? []
+                                    : [
+                                        BoxShadow(
+                                          color: const Color(0xFF6A5AE0)
+                                              .withOpacity(0.2),
+                                          blurRadius: 6,
+                                          offset: const Offset(0, 2),
+                                        ),
+                                      ],
+                              ),
+                              child: _isAddingToCart
+                                  ? const SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Color(0xFF6A5AE0),
+                                      ),
+                                    )
+                                  : const Icon(
+                                      Icons.shopping_bag_outlined,
+                                      color: Color(0xFF6A5AE0),
+                                      size: 20,
+                                    ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          // Buy Now Button
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => AddressPage(
+                                      isBuyNow: true,
+                                      buyNowProductId: widget.productId,
+                                      buyNowProductName: widget.name,
+                                      buyNowPrice: double.tryParse(widget.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                                      buyNowQuantity: 1,
+                                    ),
                                   ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF6A5AE0),
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                elevation: 0,
+                              ),
+                              child: const Text(
+                                "Buy Now",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                       ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

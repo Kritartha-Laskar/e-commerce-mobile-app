@@ -112,29 +112,42 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                child: const Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
-
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
-                    SizedBox(height: 20),
-
-                    Text(
-                      "Welcome back",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        SizedBox(height: 20),
+                        Text(
+                          "Welcome back",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "Sign in to continue",
+                          style: TextStyle(
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
                     ),
-
-                    SizedBox(height: 5),
-
-                    Text(
-                      "Sign in to continue",
-                      style: TextStyle(
-                        color: Colors.white70,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(
+                          Icons.store,
+                          color: Colors.white,
+                          size: 40,
+                        ),
                       ),
                     ),
                   ],
@@ -298,6 +311,11 @@ class _LoginPageState extends State<LoginPage> {
                                   )
                                 : const Text(
                                     "Sign In",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                           ),
                         ),

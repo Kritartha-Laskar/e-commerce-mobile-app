@@ -3,6 +3,7 @@ import '../models/product_model.dart';
 import '../services/show_product_api.dart';
 import '../services/product_api.dart';
 import 'salerfirstpage.dart';
+import 'salereditpage.dart';
 import '../topbotam/topbar.dart';
 import '../topbotam/seller_bottombar.dart';
 import '../widgets/ngrok_image.dart';
@@ -307,16 +308,29 @@ class _SalerProductShowState
                                   // ✅ EDIT BUTTON
                                   Align(
                                     alignment: Alignment.bottomRight,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(7),
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xFFF1EEFF),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const Icon(
-                                        Icons.edit,
-                                        size: 18,
-                                        color: Color(0xFF6A5AE0),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final updated = await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => EditProductScreen(product: product),
+                                          ),
+                                        );
+                                        if (updated == true) {
+                                          loadProducts();
+                                        }
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(7),
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFFF1EEFF),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(
+                                          Icons.edit,
+                                          size: 18,
+                                          color: Color(0xFF6A5AE0),
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -26,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> handleRegister() async {
     if (nameController.text.isEmpty ||
         emailController.text.isEmpty ||
+        phoneController.text.isEmpty ||
         passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please fill all required fields")),
@@ -45,6 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
     final result = await ApiService.register(
       nameController.text,
       emailController.text,
+      phoneController.text,
       passwordController.text,
       userType,
     );
@@ -85,22 +87,41 @@ class _RegisterPageState extends State<RegisterPage> {
                     colors: [Color(0xFF6A5AE0), Color(0xFF7F6CF2)],
                   ),
                 ),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 20),
-                    Text(
-                      "Create account",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        SizedBox(height: 20),
+                        Text(
+                          "Create account",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "Join Xaj-par today",
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Join Xaj-par today",
-                      style: TextStyle(color: Colors.white70),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(
+                          Icons.store,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -218,7 +239,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ? const CircularProgressIndicator(
                                     color: Colors.white,
                                   )
-                                : const Text("Create Account"),
+                                : const Text(
+                                    "Create Account",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                           ),
                         ),
 

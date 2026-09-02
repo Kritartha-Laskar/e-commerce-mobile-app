@@ -20,13 +20,22 @@ class GetStartedPage extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
 
-              Container(
-                padding: const EdgeInsets.all(25),
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: 130,
+                  height: 130,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => Container(
+                    padding: const EdgeInsets.all(25),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Icon(Icons.store, color: Colors.deepPurple, size: 40),
+                  ),
                 ),
-                child: const Icon(Icons.check, color: Colors.deepPurple, size: 40),
               ),
 
               const SizedBox(height: 20),
@@ -81,7 +90,14 @@ class GetStartedPage extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.symmetric(vertical: 15),
                             ),
-                            child: const Text("Get Started"),
+                            child: const Text(
+                              "Get Started",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
 

@@ -82,6 +82,7 @@ class ApiService {
   static Future<Map<String, dynamic>?> register(
     String name,
     String email,
+    String mobileNo,
     String password,
     String userType,
   ) async {
@@ -91,6 +92,7 @@ class ApiService {
       body: {
         'name': name,
         'email': email,
+        'mobile_no': mobileNo,
         'password': password,
         'user_type': userType,
       },

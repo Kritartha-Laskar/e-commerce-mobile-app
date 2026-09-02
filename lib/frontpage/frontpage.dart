@@ -127,23 +127,7 @@ class _FrontPageState extends State<FrontPage> {
 
               const SizedBox(height: 20),
 
-              // 🎟️ BANNER
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF6A5AE0), Color(0xFF7F6CF2)],
-                  ),
-                ),
-                child: const Text(
-                  "Summer Sale!",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
 
-              const SizedBox(height: 25),
 
               // ✨ FEATURED TITLE
               Row(

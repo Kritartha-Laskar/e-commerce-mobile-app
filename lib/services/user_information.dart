@@ -149,8 +149,6 @@ class UserInformationService {
     required String state,
     required String pincode,
     required String country,
-    String? latitude,
-    String? longitude,
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/addresses'),
@@ -166,8 +164,6 @@ class UserInformationService {
         "state": state,
         "pincode": pincode,
         "country": country,
-        "latitude": latitude,
-        "longitude": longitude,
       }),
     );
 

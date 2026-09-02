@@ -18,8 +18,6 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
   final TextEditingController stateController = TextEditingController();
   final TextEditingController pincodeController = TextEditingController();
   final TextEditingController countryController = TextEditingController();
-  final TextEditingController latitudeController = TextEditingController();
-  final TextEditingController longitudeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,16 +59,6 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                         _input(stateController, "State"),
                         _input(pincodeController, "Pincode", isNumber: true),
                         _input(countryController, "Country"),
-                        _input(
-                          latitudeController,
-                          "Latitude",
-                          isOptional: true,
-                        ),
-                        _input(
-                          longitudeController,
-                          "Longitude",
-                          isOptional: true,
-                        ),
 
                         const SizedBox(height: 20),
 
@@ -94,12 +82,6 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                                 state: stateController.text,
                                 pincode: pincodeController.text,
                                 country: countryController.text,
-                                latitude: latitudeController.text.isEmpty
-                                    ? null
-                                    : latitudeController.text,
-                                longitude: longitudeController.text.isEmpty
-                                    ? null
-                                    : longitudeController.text,
                               );
 
                               if (!mounted) return;

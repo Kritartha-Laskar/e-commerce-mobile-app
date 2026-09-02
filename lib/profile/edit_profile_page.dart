@@ -250,51 +250,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           Center(
                             child: Column(
                               children: [
-                                Stack(
-                                  children: [
-                                    Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xFFF1EEFF),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          _initials,
-                                          style: const TextStyle(
-                                            color: Color(0xFF6A5AE0),
-                                            fontSize: 28,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFFF1EEFF),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      _initials,
+                                      style: const TextStyle(
+                                        color: Color(0xFF6A5AE0),
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Positioned(
-                                      bottom: 0,
-                                      right: 0,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(4),
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFF6A5AE0),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(
-                                          Icons.camera_alt_outlined,
-                                          color: Colors.white,
-                                          size: 14,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                const Text(
-                                  "Change photo",
-                                  style: TextStyle(
-                                    color: Color(0xFF6A5AE0),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
                                   ),
                                 ),
                               ],
@@ -329,21 +300,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             isEditable: true,
                             keyboardType: TextInputType.phone,
                           ),
-                          const SizedBox(height: 15),
-
-                          // ── Date of Birth (editable) ──
-                          _buildInputField(
-                            label: "Date of birth",
-                            controller: _dobController,
-                            isEditable: true,
-                            hint: "YYYY-MM-DD",
-                            isGreyText: _dobController.text.isEmpty,
-                          ),
-                          const SizedBox(height: 15),
-
-                          // ── Gender (dropdown) ──
-                          _buildDropdown(),
-
                           const SizedBox(height: 25),
 
                           // ── Change password ──
@@ -494,14 +450,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
           keyboardType: keyboardType,
           onChanged: onChanged,
           style: TextStyle(
-            color: isGreyText ? Colors.grey : Colors.black87,
+            color: isEditable
+                ? (isGreyText ? Colors.grey : Colors.black87)
+                : Colors.grey.shade600,
             fontSize: 14,
           ),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: isEditable ? Colors.white : Colors.grey.shade100,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             enabledBorder: OutlineInputBorder(
